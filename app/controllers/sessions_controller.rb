@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
     session[:session_token]=nil
     @current_user=nil
     flash[:notice]= 'You have logged out'
-    redirect_to products_path
+    redirect_to about_path
   end
 end
