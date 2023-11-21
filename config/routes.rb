@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => redirect('/about')
+
   resources :responses
   resources :quizzes
   resources :sounds
