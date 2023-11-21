@@ -1,11 +1,22 @@
 <h1>Sign-in</h1>
-<% form_tag url: login_path, method: :get do %>
-  <%label_tag :email, "Name"%>
-  <%text_field_tag :name %>
-  <%label_tag :email, "Email"%>
-  <%text_field_tag :email %>
-  <%label_tag :email, "Password"%>
-  <%password_field_tag :password %>
-  <%label_tag :email, "Confirm Password"%>
-  <%password_field_tag :password_confirmation %>
-<% end %>
+
+<form login_path>
+  <div>
+    <label for="email">Email:</label>
+    <input type="text" name="email"/>
+    <label for="password">Password:</label>
+    <input type="password" name="password"/>
+    <label for="password_confirmation">Password Confirmation:</label>
+    <input type="password" name="password_confirmation"/>
+    <input type="submit" value="Login"/>
+  </div>
+</form>
+
+<%# form login_path%>
+  <%#label_tag :email, "Email"%>
+  <%#text_field_tag :email %>
+  <%#label_tag :password, "Password"%>
+  <%#password_field_tag :password %>
+  <%#label_tag :password_confirmation, "Confirm Password"%>
+  <%#password_field_tag :password_confirmation %>
+  <%#submit_tag "Login"%>
