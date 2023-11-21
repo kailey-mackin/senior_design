@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: [:show, :edit, :update, :destroy]
 
   def user_params
-    params.require(:user).permit(:name, :email, :address,:password,:password_confirmation)
+    params.require(:user).permit(:id, :name, :email, :address,:password,:password_confirmation)
   end
 
   def show
@@ -20,10 +20,10 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       flash[:notice] = "Sign up successful! Welcome to THE!"
-      redirect_to users_path
+      redirect_to login_path
     else
       errors = @user.errors.full_messages
-      puts "Validation failed with errors: #{errors.join(', ')}"
+      flash[:notice] = "Validation failed with errors: #{errors.join(', ')}"
       render 'new'
     end
   end

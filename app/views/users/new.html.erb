@@ -1,5 +1,5 @@
 <h1>Create A New User</h1>
-<%= form_tag login_url, method: :get do %>
+<%= form_tag users_path, method: :post do %>
   <%= fields_for :user do |form| %>
     <%= form.label :name, "Name" %>
     <%= form.text_field :name %>

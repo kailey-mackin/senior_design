@@ -1,5 +1,5 @@
 <h1>Sign-in</h1>
-<%= form_tag about_path, method: :get  do %>
+<%= form_tag root_path, method: :get  do %>
   <%= fields_for :session do |form| %>
   <%= form.label :email, "Email" %>
   <%= form.text_field :email %>
