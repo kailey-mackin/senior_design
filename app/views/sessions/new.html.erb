@@ -1,9 +1,11 @@
 <h1>Sign-in</h1>
-<%= form_with model: @user do |form| %>
-  <%= form.text_field :email %>
-  <%= form.password_field :password %>
-  <%= form.password_field :password_confirmation %>
-  <%= form.submit %>
+<% form_tag url: login_path, method: :get do %>
+  <%label_tag :email, "Name"%>
+  <%text_field_tag :name %>
+  <%label_tag :email, "Email"%>
+  <%text_field_tag :email %>
+  <%label_tag :email, "Password"%>
+  <%password_field_tag :password %>
+  <%label_tag :email, "Confirm Password"%>
+  <%password_field_tag :password_confirmation %>
 <% end %>
-
-<%= link_to 'Create New User', new_users_path %>
