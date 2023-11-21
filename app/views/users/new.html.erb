@@ -1,9 +1,12 @@
 <h1>Create A New User</h1>
-<% form_tag users_path do %>
-  <%label_tag :email, "Email"%>
-  Username: <%text_field_tag :email %>
-  <%label_tag :email, "Password"%>
-  <%password_field_tag :password %>
-  <%label_tag :email, "Confirm Password"%>
-  <%password_field_tag :password_confirmation %>
+<%= form_tag users_path do %>
+  <%= label_tag :email, "Email" %>
+  <%= text_field_tag :email %>
+  <%= label_tag :username, "Username" %>
+  <%= text_field_tag :username %>
+  <%= label_tag :password, "Password" %>
+  <%= password_field_tag :password %>
+  <%= label_tag :password_confirmation, "Confirm Password" %>
+  <%= password_field_tag :password_confirmation %>
+  <%= submit_tag "Create User" %>
 <% end %>
