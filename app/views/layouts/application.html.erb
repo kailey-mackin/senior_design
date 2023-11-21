@@ -7,6 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav><h1>GRBAS: Simple Hearing Training</h1>
+  <% if !@current_user %>
+    <%= link_to 'Login', login_path %>
+  <% else %>
+    <%= link_to 'Logout', logout_path %>
+<% end %>
+  <%= link_to 'Create New User', new_users_path %>
+  <%= link_to 'About', about_path %>
+</nav>
 
 <%= yield %>
 
