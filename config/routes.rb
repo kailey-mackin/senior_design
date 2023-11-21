@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  root :to => redirect('/about')
+  root :to => 'pages#about'
 
   resources :responses
   resources :quizzes
   resources :sounds
   resources :users
   match '/login', to: 'sessions#new', via: :get, :as => 'login'
-  match '/about', to: 'users#about', via: :get, :as => 'about'
-  match '/logout', to: 'sessions#destroy', via: :delete, :as => 'logout_path'
+  match '/about', to: 'pages#about', via: :get, :as => 'about'
+  match '/logout', to: 'sessions#destroy', via: :delete, :as => 'logout'
+  match '/login/create', to: 'sessions#create', via: :post, :as => 'sessions'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
