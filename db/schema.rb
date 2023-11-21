@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231121052252) do
+ActiveRecord::Schema.define(version: 20231121170359) do
 
   create_table "quiz_sounds", force: :cascade do |t|
     t.integer "quiz_id"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 20231121052252) do
     t.integer "a_rating"
     t.integer "s_rating"
     t.text    "audio_file_path"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "name"
+    t.string "session_token"
   end
 
 end
