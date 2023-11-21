@@ -40,7 +40,4 @@ class UsersController < ApplicationController
     # destroy user
   end
 
-  def about
-  end
-
 end
