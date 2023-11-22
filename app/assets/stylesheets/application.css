@@ -13,3 +13,51 @@
  *= require_tree .
  *= require_self
  */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+/* Styles for notice flash messages */
+.flash {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.flash.notice {
+  background-color: rgba(0, 128, 0, 0.6); /* Lighter green with transparency */
+  color: white;
+}
+
+.flash.alert {
+  background-color: rgba(255, 0, 0, 0.6); /* Lighter red with transparency */
+  color: white;
+}

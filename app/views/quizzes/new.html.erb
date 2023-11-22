@@ -1,5 +1,24 @@
+<!-- app/views/quizzes/new.html.erb -->
 <h1>New Quiz</h1>
 
-<%= render 'form' %>
+<%= form_for @quiz do |f| %>
+  <%= f.label :which_grbas_letter %>
+  <%= f.select :which_grbas_letter, ['g', 'r', 'b', 'a', 's'] %>
+  <% if @quiz.errors[:which_grbas_letter].any? %>
+    <div class="error"><%= @quiz.errors[:which_grbas_letter].join(", ") %></div>
+  <% end %>
 
-<%= link_to 'Back', quizzes_path %>
+  <%= f.label :difficulty %>
+  <%= f.number_field :difficulty, in: 0..3 %>
+  <% if @quiz.errors[:difficulty].any? %>
+    <div class="error"><%= @quiz.errors[:difficulty].join(", ") %></div>
+  <% end %>
+
+  <%= f.label :num_questions %>
+  <%= f.number_field :num_questions, in: 1..20 %>
+  <% if @quiz.errors[:num_questions].any? %>
+    <div class="error"><%= @quiz.errors[:num_questions].join(", ") %></div>
+  <% end %>
+
+  <%= f.submit "Create Quiz" %>
+<% end %>

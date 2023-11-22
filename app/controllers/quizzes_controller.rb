@@ -24,32 +24,30 @@ class QuizzesController < ApplicationController
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @quiz = Quiz.new(quiz_params)
-
-    respond_to do |format|
-      if @quiz.save
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
-        format.json { render :show, status: :created, location: @quiz }
-      else
-        format.html { render :new }
-        format.json { render json: @quiz.errors, status: :unprocessable_entity }
-      end
+    @quiz = Quiz.build_quiz params[:quiz][:which_grbas_letter],
+                            params[:quiz][:difficulty].to_i,
+                            params[:quiz][:num_questions].to_i,
+                            session[:user_id]
+    if @quiz.save
+      flash[:notice] = "Quiz created successfully!"
+      redirect_to quiz_path(@quiz)
+    else
+      flash[:alert] = "Quiz creation failed!"
+      render :new
     end
   end
 
   # PATCH/PUT /quizzes/1
   # PATCH/PUT /quizzes/1.json
-  def update
-    respond_to do |format|
-      if @quiz.update(quiz_params)
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
-        format.json { render :show, status: :ok, location: @quiz }
-      else
-        format.html { render :edit }
-        format.json { render json: @quiz.errors, status: :unprocessable_entity }
-      end
-    end
+  # app/controllers/quizzes_controller.rb
+def update
+  @quiz = Quiz.find(params[:id])
+  if @quiz.update(quiz_params)
+    redirect_to about_path
+  else
+    render :edit
   end
+end
 
   # DELETE /quizzes/1
   # DELETE /quizzes/1.json
@@ -69,6 +67,6 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.fetch(:quiz, {})
+      params.require(:quiz).permit(:which_grbas_letter, :difficulty, :num_questions)
     end
 end
