@@ -61,6 +61,11 @@ class SoundsController < ApplicationController
     end
   end
 
+  def audio
+    path = Rails.root.join('public', 'data', 'audio', params[:filename])
+    send_file path, type: 'audio/wav', disposition: 'inline'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sound

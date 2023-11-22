@@ -1,4 +1,30 @@
-<p id="notice"><%= notice %></p>
+<!-- app/views/quizzes/show.html.erb -->
+<h1>"<%= Quiz.translate_letter(@quiz.which_grbas_letter) %>" Quiz</h1>
 
-<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
+<%= form_for @quiz, url: {action: "update"} do |f| %>
+  <% @quiz.responses.each_with_index do |response, index| %>
+    <%= f.fields_for :responses, response do |response_fields| %>
+      <div class="question">
+        <h2>Question <%= index + 1 %></h2>
+        <audio controls>
+          <source src="<%= asset_path(response.sound.audio_file_path) %>" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+
+        <div class="rating">
+          <%= response_fields.label :rating, "Rate the sound (0-3):" %>
+          <%= response_fields.number_field :rating, in: 0..3 %>
+        </div>
+
+        <div class="explanation">
+          <%= response_fields.label :reasoning, "Short explanation:" %>
+          <%= response_fields.text_field :reasoning %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "Submit Quiz" %>
+<% end %>
+
 <%= link_to 'Back', quizzes_path %>
