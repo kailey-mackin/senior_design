@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231121052252) do
+ActiveRecord::Schema.define(version: 20231122043539) do
 
   create_table "quiz_sounds", force: :cascade do |t|
     t.integer "quiz_id"
@@ -24,9 +24,19 @@ ActiveRecord::Schema.define(version: 20231121052252) do
     t.datetime "created_at",         null: false
     t.integer  "user_id"
     t.string   "which_grbas_letter"
+    t.text     "quiz_answers"
+    t.integer  "difficulty"
+    t.integer  "num_questions"
   end
 
   add_index "quizzes", ["user_id"], name: "index_quizzes_on_user_id"
+
+  create_table "quizzes_responses", id: false, force: :cascade do |t|
+    t.integer "quiz_id",     null: false
+    t.integer "response_id", null: false
+  end
+
+  add_index "quizzes_responses", ["quiz_id", "response_id"], name: "index_quizzes_responses_on_quiz_id_and_response_id"
 
   create_table "responses", force: :cascade do |t|
     t.integer  "rating"
@@ -46,12 +56,19 @@ ActiveRecord::Schema.define(version: 20231121052252) do
     t.string  "db_file_name"
     t.text    "score_explanation"
     t.text    "hint"
-    t.integer "g_rating"
-    t.integer "r_rating"
-    t.integer "b_rating"
-    t.integer "a_rating"
-    t.integer "s_rating"
+    t.float   "g_rating"
+    t.float   "r_rating"
+    t.float   "b_rating"
+    t.float   "a_rating"
+    t.float   "s_rating"
     t.text    "audio_file_path"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "name"
+    t.string "session_token"
   end
 
 end
