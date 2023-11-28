@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :quizzes
   resources :sounds
   resources :users do
-    get 'quiz_history', on: :collection
+    member do
+      get 'quiz_history'
+    end
   end
   match '/login', to: 'sessions#new', via: :get, :as => 'login'
   match '/login/create', to: 'sessions#create', via: :post, :as => 'sessions'

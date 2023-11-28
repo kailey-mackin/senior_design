@@ -1,6 +1,7 @@
-<h1>Create A New User</h1>
+<h1>Profile for: </h1>
 
 <%= @current_user.name %>
 <%= @current_user.email %>
+<%= link_to quiz_history_user_path(@current_user.id) %>
 
 <%link_to "Home Page", root_path %>

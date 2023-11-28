@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_current_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user, only: [:show, :edit, :update, :destroy, :quiz_history]
 
   def user_params
     params.require(:user).permit(:id, :name, :email, :address,:password,:password_confirmation)
@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   end
 
   def quiz_history
-    @quiz_history = current_user.quizzes
+    @quiz_history = @current_user.quizzes
   end
 end

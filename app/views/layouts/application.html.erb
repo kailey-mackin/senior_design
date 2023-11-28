@@ -25,7 +25,7 @@
       <%= link_to 'Create New User', new_user_path %>
     <% else %>
       <%= link_to 'Logout', logout_path, method: :delete%>
-      <%= link_to 'Your Quizzes', quiz_history_users_path %>
+      <%= link_to 'Your Quizzes', quiz_history_user_path(@current_user.id) %>
     <% end %>
       <%= link_to 'About', about_path %>
       <%= link_to 'Sounds', sounds_path %>

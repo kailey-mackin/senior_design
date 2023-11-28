@@ -54,3 +54,11 @@ wav_files.each do |wav_file|
   )
   puts "Created sound #{filename}"
 end
+
+users = [{:email => "kaileymackin@gmail.com", :password => "password", :password_confirmation => "password", :name => "Kailey Mackin"},
+         {:email => "testuser@gmail.com", :password => "password", :password_confirmation => "password", :name => "Test User"},
+         {:email => "crazycats@catlady.com", :password => "password", :password_confirmation => "password", :name => "Crazy Cats"}]
+
+users.each do |user|
+  User.create!(user)
+end
