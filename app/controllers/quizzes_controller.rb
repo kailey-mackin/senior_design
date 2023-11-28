@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user
 
   # GET /quizzes
   # GET /quizzes.json
