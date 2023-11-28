@@ -1,5 +1,6 @@
 class SoundsController < ApplicationController
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user
 
   # GET /sounds
   # GET /sounds.json
