@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    render file: "#{Rails.root}/public/404.html", status: :not_found
   end
 
   # GET /quizzes/1
@@ -30,6 +30,10 @@ class QuizzesController < ApplicationController
                             session[:user_id]
     if @quiz.save
       flash[:notice] = "Quiz created successfully!"
+      byebug
+      unless @current_user.nil?
+        @current_user.quizzes << @quiz
+      end
       redirect_to quiz_path(@quiz)
     else
       flash[:alert] = "Quiz creation failed!"

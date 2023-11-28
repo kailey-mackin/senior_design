@@ -10,8 +10,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-#
-ActiveRecord::Schema.define(version: 20231122043539) do
+
+ActiveRecord::Schema.define(version: 20231127225729) do
 
   create_table "quiz_sounds", force: :cascade do |t|
     t.integer "quiz_id"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20231122043539) do
   end
 
   add_index "quizzes_responses", ["quiz_id", "response_id"], name: "index_quizzes_responses_on_quiz_id_and_response_id"
+
+  create_table "quizzes_users", id: false, force: :cascade do |t|
+    t.integer "quiz_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  add_index "quizzes_users", ["quiz_id", "user_id"], name: "index_quizzes_users_on_quiz_id_and_user_id"
+  add_index "quizzes_users", ["user_id", "quiz_id"], name: "index_quizzes_users_on_user_id_and_quiz_id"
 
   create_table "responses", force: :cascade do |t|
     t.integer  "rating"

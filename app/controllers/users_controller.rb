@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       flash[:notice] = "Sign up successful! Welcome to THE!"
-      redirect_to login_path
+      redirect_to about_path
     else
       errors = @user.errors.full_messages
       flash[:notice] = "Validation failed with errors: #{errors.join(', ')}"
@@ -40,4 +40,7 @@ class UsersController < ApplicationController
     # destroy user
   end
 
+  def quiz_history
+    @quiz_history = current_user.quizzes
+  end
 end

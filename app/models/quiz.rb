@@ -2,8 +2,8 @@ class Quiz < ActiveRecord::Base
   has_many :responses
   has_and_belongs_to_many :sounds, :join_table => "quiz_sounds"
   has_and_belongs_to_many :responses, :join_table => "quizzes_responses"
+  has_and_belongs_to_many :users
   serialize :quiz_answers, Array
-  #belongs_to :user
 
   validates :which_grbas_letter, presence: true
   validates :difficulty, presence: true
@@ -43,21 +43,6 @@ class Quiz < ActiveRecord::Base
       quiz.created_at = DateTime.now
       end
     quiz
-  end
-
-  def self.translate_letter(grbas_letter)
-    case grbas_letter
-    when "g"
-      return "Grade"
-    when "r"
-      return "Roughness"
-    when "b"
-      return "Breathiness"
-    when "a"
-      return "Asthenia"
-    when "s"
-      return "Strain"
-    end
   end
 
   def self.translate_letter(grbas_letter)

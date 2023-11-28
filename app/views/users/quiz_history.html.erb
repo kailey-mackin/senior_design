@@ -1,0 +1,16 @@
+<h1>Your Quiz History</h1>
+
+<% if @quiz_history.empty? %>
+  <p>You have not taken any quizzes yet.</p>
+<% else %>
+  <ul>
+    <% @quiz_history.each do |quiz| %>
+      <li>
+        <h2><%= quiz.which_grbas_letter %></h2> <!-- Replace with your actual quiz title attribute -->
+        <p>Difficulty: <%= quiz.difficulty %></p>
+        <p>Number of Questions: <%= quiz.num_questions %></p>
+        <!-- Add more quiz details here -->
+      </li>
+    <% end %>
+  </ul>
+<% end %>

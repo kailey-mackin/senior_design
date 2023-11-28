@@ -9,17 +9,17 @@ class SessionsController < ApplicationController
       session["session_token"]= user.session_token
       @current_user = user
       flash[:notice] = "Log in successful!"
-      redirect_to user
+      redirect_to about_path
     else
-      flash.now[:warning] = 'Invalid email/password combination'
-      render 'new'
+      flash[:alert] = 'Invalid email/password combination'
+      redirect_to login_path
     end
   end
 
   def destroy
     session[:session_token]=nil
     @current_user=nil
-    flash[:notice]= 'You have logged out'
+    flash[:notice]= 'Successfully logged out'
     redirect_to about_path
   end
 end
