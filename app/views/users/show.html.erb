@@ -2,6 +2,6 @@
 
 <%= @current_user.name %>
 <%= @current_user.email %>
-<%= link_to quiz_history_user_path(@current_user.id) %>
+<%= link_to "Show Quiz History", quiz_history_user_path(@current_user.id) %>
 
 <%link_to "Home Page", root_path %>

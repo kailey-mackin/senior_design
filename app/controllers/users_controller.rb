@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     id = params[:id]
     if !current_user?(id)
       flash[:warning]="Can only show profile of logged-in user"
+      redirect_to user_path(@current_user.id)
     end
   end
 

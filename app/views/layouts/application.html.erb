@@ -26,10 +26,11 @@
     <% else %>
       <%= link_to 'Logout', logout_path, method: :delete%>
       <%= link_to 'Your Quizzes', quiz_history_user_path(@current_user.id) %>
-    <% end %>
+      <%= link_to 'Profile', user_path(@current_user.id) %>
+      <%= link_to 'New Quiz', new_quiz_path %>
+  <% end %>
       <%= link_to 'About', about_path %>
       <%= link_to 'Sounds', sounds_path %>
-      <%= link_to 'New Quiz', new_quiz_path %>
   </nav>
   <%= yield %>
 </body>
