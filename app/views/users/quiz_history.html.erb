@@ -9,10 +9,13 @@
         <h2><%= quiz.which_grbas_letter %></h2> <!-- Replace with your actual quiz title attribute -->
         <p>Difficulty: <%= quiz.difficulty %></p>
         <p>Number of Questions: <%= quiz.num_questions %></p>
-        <p>Response: <%= quiz.responses.each do |response| %>
-                <%= response.reasoning %>
-            <% end %>
-        </p>
+        <% quiz.responses.each do |response| %>
+                <p>
+                  Sound: <%= Sound.find_by_id(response.sound_id).db_file_name %>,
+                  Rating: <%= response.rating %>,
+                  Reasoning: <%= response.reasoning %>
+                </p>
+        <% end %>
         <!-- Add more quiz details here -->
       </li>
     <% end %>

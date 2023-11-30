@@ -49,7 +49,7 @@ def update
   @quiz = Quiz.find(params[:id])
   quiz_params[:responses].each do |response|
     @response = Response.find_by_id(response[0])
-    @response.update({:rating => response[1][:rating], :reasoning => response[1][:reasoning]})
+    @response.update({:rating => response[1][:rating], :reasoning => response[1][:reasoning], :user_id => @current_user.id, :quiz_id => @quiz.id})
   end
   if @quiz.save
     redirect_to about_path
