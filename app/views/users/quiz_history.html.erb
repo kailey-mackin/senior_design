@@ -9,6 +9,10 @@
         <h2><%= quiz.which_grbas_letter %></h2> <!-- Replace with your actual quiz title attribute -->
         <p>Difficulty: <%= quiz.difficulty %></p>
         <p>Number of Questions: <%= quiz.num_questions %></p>
+        <p>Response: <%= quiz.responses.each do |response| %>
+                <%= response.reasoning %>
+            <% end %>
+        </p>
         <!-- Add more quiz details here -->
       </li>
     <% end %>

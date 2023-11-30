@@ -47,7 +47,7 @@ class QuizzesController < ApplicationController
   # app/controllers/quizzes_controller.rb
 def update
   @quiz = Quiz.find(params[:id])
-  if @quiz.update(quiz_params)
+  if @quiz.responses.last.update(quiz_params[:responses].to_h)
     redirect_to about_path
   else
     render :edit
@@ -72,6 +72,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:which_grbas_letter, :difficulty, :num_questions)
+      params.require(:quiz).permit(:which_grbas_letter, :difficulty, :num_questions, responses: [:rating, :reasoning])
     end
 end
