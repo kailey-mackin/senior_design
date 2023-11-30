@@ -2,36 +2,89 @@
 <html>
 <head>
   <title>RailsApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': true %>
   <%= csrf_meta_tags %>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <style>
+      body {
+          padding-top: 20px;
+      }
+      .flash {
+          padding: 10px;
+          border: 1px solid transparent;
+          border-radius: 5px;
+          margin-bottom: 20px;
+      }
+      .flash.notice {
+          color: #155724;
+          background-color: #d4edda;
+          border-color: #c3e6cb;
+      }
+      .flash.alert {
+          color: #721c24;
+          background-color: #f8d7da;
+          border-color: #f5c6cb;
+      }
+      nav {
+          background-color: #f8f9fa;
+          padding: 10px;
+          border-radius: 5px;
+          margin-bottom: 20px;
+      }
+      nav h1 {
+          margin-bottom: 0;
+      }
+      nav a {
+          color: #007bff;
+          margin-right: 10px;
+      }
+      nav a:hover {
+          text-decoration: underline;
+      }
+  </style>
 </head>
 <body>
 
-  <% if flash[:notice].present? %>
-    <div class="flash notice">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-  <% if flash[:alert].present? %>
-    <div class="flash alert">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
+<% if flash[:notice].present? %>
+  <div class="flash notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<% if flash[:alert].present? %>
+  <div class="flash alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
-  <nav><h1>GRBAS: Simple Hearing Training</h1>
+<nav class="d-flex justify-content-between">
+  <h1>GRBAS: Simple Hearing Training</h1>
+  <div>
     <% if @current_user.nil? %>
       <%= link_to 'Login', login_path %>
       <%= link_to 'Create New User', new_user_path %>
     <% else %>
-      <%= link_to 'Logout', logout_path, method: :delete%>
+      <%= link_to 'Logout', logout_path, method: :delete %>
       <%= link_to 'Your Quizzes', quiz_history_user_path(@current_user.id) %>
       <%= link_to 'Profile', user_path(@current_user.id) %>
       <%= link_to 'New Quiz', new_quiz_path %>
-  <% end %>
-      <%= link_to 'About', about_path %>
-      <%= link_to 'Sounds', sounds_path %>
-  </nav>
+    <% end %>
+    <%= link_to 'About', about_path %>
+    <%= link_to 'Sounds', sounds_path %>
+  </div>
+</nav>
+
+<div class="container">
   <%= yield %>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>
