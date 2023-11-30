@@ -3,7 +3,7 @@
 
 <%= form_for @quiz, url: {action: "update"} do |f| %>
   <% @quiz.responses.each_with_index do |response, index| %>
-    <%= f.fields_for :responses, response do |response_fields| %>
+    <%= f.fields_for :responses, index: response.id do |response_fields| %>
       <div class="question">
         <h2>Question <%= index + 1 %></h2>
         <audio controls>

@@ -6,4 +6,21 @@ class Sound < ActiveRecord::Base
     str = grbas_letter + "_rating"
     Sound.where("#{str} = ?", difficulty).sample
   end
+
+  def find_score (grbas_letter)
+    case grbas_letter
+    when "g"
+      self.g_rating
+    when "r"
+      self.r_rating
+    when "b"
+      self.b_rating
+    when "a"
+      self.a_rating
+    when "s"
+      self.s_rating
+    else
+      nil
+    end
+  end
 end

@@ -28,7 +28,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.build_quiz params[:quiz][:which_grbas_letter],
                             params[:quiz][:difficulty].to_i,
                             params[:quiz][:num_questions].to_i,
-                            session[:user_id]
+                            @current_user.id
     if @quiz.save
       flash[:notice] = "Quiz created successfully!"
       byebug
@@ -47,7 +47,13 @@ class QuizzesController < ApplicationController
   # app/controllers/quizzes_controller.rb
 def update
   @quiz = Quiz.find(params[:id])
-  if @quiz.update(quiz_params)
+  quiz_params[:responses].each do |response|
+    @response = Response.find_by_id(response[0])
+    @response.update({:rating => response[1][:rating], :reasoning => response[1][:reasoning], :quiz_id => @quiz.id})
+    feedback = @response.create_feedback
+    @response.update({:feedback => feedback})
+  end
+  if @quiz.save
     redirect_to about_path
   else
     render :edit
@@ -72,6 +78,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:which_grbas_letter, :difficulty, :num_questions)
+      params.require(:quiz).permit(:which_grbas_letter, :difficulty, :num_questions, responses: [:rating, :reasoning])
     end
 end

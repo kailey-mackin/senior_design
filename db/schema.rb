@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20231127225729) do
   create_table "responses", force: :cascade do |t|
     t.integer  "rating"
     t.text     "reasoning"
+    t.text     "feedback"
     t.datetime "created_at"
     t.integer  "quiz_id"
     t.integer  "sound_id"
