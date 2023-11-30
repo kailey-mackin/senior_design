@@ -50,6 +50,8 @@ def update
   quiz_params[:responses].each do |response|
     @response = Response.find_by_id(response[0])
     @response.update({:rating => response[1][:rating], :reasoning => response[1][:reasoning], :quiz_id => @quiz.id})
+    feedback = @response.create_feedback
+    @response.update({:feedback => feedback})
   end
   if @quiz.save
     redirect_to about_path

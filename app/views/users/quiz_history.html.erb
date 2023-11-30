@@ -12,6 +12,7 @@
         <% quiz.responses.each do |response| %>
                 <p>
                   Sound: <%= Sound.find_by_id(response.sound_id).db_file_name %>,
+                  Sound: <%= Sound.find_by_id(response.sound_id).g_rating %>,
                   Rating: <%= response.rating %>,
                   Reasoning: <%= response.reasoning %>
                 </p>
