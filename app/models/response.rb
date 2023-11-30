@@ -6,11 +6,11 @@ class Response < ActiveRecord::Base
   def create_feedback
     quiz_letter = Quiz.find_by_id(self.quiz_id).which_grbas_letter
     expert_score = Sound.find_by_id(self.sound_id).find_score(quiz_letter)
-    if expert_score.eql? self.rating
+    if expert_score.eql? self.rating.to_f
       correct_answers = ["That’s it! #{self.rating}!", "Good listening!", "You got it!", "Spectacular!", "Golden!", "The ears have it!","That's speechy!","Super Duper!","Super Laryngeal Perceptor!"]
-      ran_ind = Random.rand(correct_answers.length + 1)
+      ran_ind = Random.rand(correct_answers.length)
       correct_answers[ran_ind]
-    elsif expert_score.eql? 0
+    elsif expert_score.eql? 0.0
       case quiz_letter
       when "g"
         "Not quite. Our experts rated this voice as within normal limits or G0. The voice may not be perfect, but is it a voice that would stand out if you heard it in a public place (ie walking down a street)?"
