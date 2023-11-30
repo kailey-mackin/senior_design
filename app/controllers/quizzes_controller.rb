@@ -47,7 +47,11 @@ class QuizzesController < ApplicationController
   # app/controllers/quizzes_controller.rb
 def update
   @quiz = Quiz.find(params[:id])
-  if @quiz.responses.last.update(quiz_params[:responses].to_h)
+  quiz_params[:responses].each do |response|
+    @response = Response.find_by_id(response[0])
+    @response.update({:rating => response[1][:rating], :reasoning => response[1][:reasoning]})
+  end
+  if @quiz.save
     redirect_to about_path
   else
     render :edit
