@@ -6,19 +6,29 @@
   <ul>
     <% @quiz_history.each do |quiz| %>
       <li>
-        <h2><%= quiz.which_grbas_letter %></h2> <!-- Replace with your actual quiz title attribute -->
+        <h2><%= quiz.which_grbas_letter.upcase %></h2>
         <p>Difficulty: <%= quiz.difficulty %></p>
         <p>Number of Questions: <%= quiz.num_questions %></p>
+        <p>Taken On: <%= quiz.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %d, %Y at %I:%M%p") %></p>
         <% quiz.responses.each do |response| %>
-                <p>
-                  Sound: <%= Sound.find_by_id(response.sound_id).db_file_name %>,
-                  Rating: <%= response.rating %>,
-                  Reasoning: <%= response.reasoning %>
-                  Feedback: <%= response.feedback %>
-                </p>
+          <div class="response-box">
+            <p><strong>Sound:</strong> <%= Sound.find_by_id(response.sound_id).db_file_name %></p>
+            <p><strong>Rating:</strong> <%= response.rating %></p>
+            <p><strong>Your Reasoning:</strong> <%= response.reasoning %></p>
+            <p><strong>Expert Feedback:</strong> <%= response.feedback %></p>
+          </div>
         <% end %>
-        <!-- Add more quiz details here -->
       </li>
     <% end %>
   </ul>
 <% end %>
+
+<style>
+    .response-box {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+    }
+</style>
