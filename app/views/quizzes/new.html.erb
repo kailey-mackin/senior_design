@@ -3,7 +3,7 @@
 
 <%= form_for @quiz do |f| %>
   <%= f.label :which_grbas_letter %>
-  <%= f.select :which_grbas_letter, ['g', 'r', 'b', 'a', 's'] %>
+  <%= f.select :which_grbas_letter, ['G', 'R', 'B', 'A', 'S'] %>
   <% if @quiz.errors[:which_grbas_letter].any? %>
     <div class="error"><%= @quiz.errors[:which_grbas_letter].join(", ") %></div>
   <% end %>
@@ -14,7 +14,7 @@
     <div class="error"><%= @quiz.errors[:difficulty].join(", ") %></div>
   <% end %>
 
-  <%= f.label :num_questions %>
+  <%= f.label :num_questions, 'Number of Questions' %>
   <%= f.number_field :num_questions, in: 1..20 %>
   <% if @quiz.errors[:num_questions].any? %>
     <div class="error"><%= @quiz.errors[:num_questions].join(", ") %></div>

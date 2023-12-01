@@ -39,14 +39,18 @@
           margin-bottom: 0;
       }
       nav a {
-          color: #007bff;
+          color: grey;
           margin-right: 10px;
       }
       nav a:hover {
-          text-decoration: underline;
+          color: black; /* Keep or change text color on hover */
+          background-color: white; /* Change background color to light grey on hover */
+          text-decoration: none; /* Optional: remove underline effect */
       }
   </style>
 </head>
+<body>
+
 <body>
 
 <% if flash[:notice].present? %>
@@ -61,25 +65,25 @@
 <% end %>
 
 <nav class="d-flex justify-content-between">
-  <h1>GRBAS: Simple Hearing Training</h1>
-  <div>
-    <% if @current_user.nil? %>
-      <%= link_to 'Login', login_path %>
-      <%= link_to 'Create New User', new_user_path %>
-    <% else %>
-      <%= link_to 'Logout', logout_path, method: :delete %>
-      <%= link_to 'Your Quizzes', quiz_history_user_path(@current_user.id) %>
-      <%= link_to 'Profile', user_path(@current_user.id) %>
-      <%= link_to 'New Quiz', new_quiz_path %>
-    <% end %>
+  <h1>Teaching Hearing Easy</h1>
+  <div class="d-flex">
     <%= link_to 'About', about_path %>
     <%= link_to 'Sounds', sounds_path %>
+    <%= link_to 'Create New User', new_user_path unless @current_user %>
+    <%= link_to 'Your Quizzes', quiz_history_user_path(@current_user.id) if @current_user %>
+    <%= link_to 'Profile', user_path(@current_user.id) if @current_user %>
+    <%= link_to 'New Quiz', new_quiz_path if @current_user %>
+    <% unless @current_user.nil? %>
+      <%= link_to 'Log Out', logout_path, method: :delete, class: 'mr-2' %>
+    <% end %>
+    <%= link_to 'Login', login_path unless @current_user %>
   </div>
 </nav>
 
 <div class="container">
   <%= yield %>
 </div>
+</body>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
