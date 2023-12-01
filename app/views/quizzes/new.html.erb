@@ -1,24 +1,38 @@
 <!-- app/views/quizzes/new.html.erb -->
-<h1>New Quiz</h1>
+<h1 class="mb-4">New Quiz</h1>
 
-<%= form_for @quiz do |f| %>
-  <%= f.label :which_grbas_letter %>
-  <%= f.select :which_grbas_letter, ['G', 'R', 'B', 'A', 'S'] %>
-  <% if @quiz.errors[:which_grbas_letter].any? %>
-    <div class="error"><%= @quiz.errors[:which_grbas_letter].join(", ") %></div>
-  <% end %>
+<%= form_for @quiz, html: { class: 'needs-validation', novalidate: true } do |f| %>
+  <div class="form-group">
+    <%= f.label :which_grbas_letter, class: 'form-label' %>
+    <%= f.select :which_grbas_letter, ['G', 'R', 'B', 'A', 'S'], {}, { class: 'form-control' } %>
+    <% if @quiz.errors[:which_grbas_letter].any? %>
+      <div class="error"><%= @quiz.errors[:which_grbas_letter].join(", ") %></div>
+    <% end %>
+  </div>
 
-  <%= f.label :difficulty %>
-  <%= f.number_field :difficulty, in: 0..3 %>
-  <% if @quiz.errors[:difficulty].any? %>
-    <div class="error"><%= @quiz.errors[:difficulty].join(", ") %></div>
-  <% end %>
+  <div class="form-group">
+    <%= f.label :difficulty, class: 'form-label' %>
+    <%= f.number_field :difficulty, in: 0..3, class: 'form-control' %>
+    <% if @quiz.errors[:difficulty].any? %>
+      <div class="error"><%= @quiz.errors[:difficulty].join(", ") %></div>
+    <% end %>
+  </div>
 
-  <%= f.label :num_questions, 'Number of Questions' %>
-  <%= f.number_field :num_questions, in: 1..20 %>
-  <% if @quiz.errors[:num_questions].any? %>
-    <div class="error"><%= @quiz.errors[:num_questions].join(", ") %></div>
-  <% end %>
+  <div class="form-group">
+    <%= f.label :num_questions, 'Number of Questions', class: 'form-label' %>
+    <%= f.number_field :num_questions, in: 1..20, class: 'form-control' %>
+    <% if @quiz.errors[:num_questions].any? %>
+      <div class="error"><%= @quiz.errors[:num_questions].join(", ") %></div>
+    <% end %>
+  </div>
 
-  <%= f.submit "Create Quiz" %>
+  <%= f.submit "Create Quiz", class: 'btn btn-grey' %>
 <% end %>
+
+<style>
+    .error {
+        color: #dc3545; /* Bootstrap danger color */
+        font-size: 0.875em;
+        margin-top: 5px;
+    }
+</style>
