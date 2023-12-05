@@ -31,7 +31,6 @@ class QuizzesController < ApplicationController
                             @current_user.id
     if @quiz.save
       flash[:notice] = "Quiz created successfully!"
-      byebug
       unless @current_user.nil?
         @current_user.quizzes << @quiz
       end
