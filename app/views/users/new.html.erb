@@ -1,14 +1,41 @@
-<h1>Create A New User</h1>
-<%= form_tag users_path, method: :post do %>
+<h1 class="mb-4">Create A New User</h1>
+
+<%= form_tag users_path, method: :post, class: 'needs-validation', novalidate: true do %>
   <%= fields_for :user do |form| %>
-    <%= form.label :name, "Name" %>
-    <%= form.text_field :name %>
-    <%= form.label :email, "Email" %>
-    <%= form.text_field :email %>
-    <%= form.label :password, "Password" %>
-    <%= form.password_field :password %>
-    <%= form.label :password_confirmation, "Confirm Password" %>
-    <%= form.password_field :password_confirmation %>
-    <%= submit_tag "Create User" %>
-   <% end %>
+    <div class="form-group">
+      <%= form.label :name, "Username:", class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email, "Email:", class: 'form-label' %>
+      <%= form.text_field :email, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password, "Password:", class: 'form-label' %>
+      <%= form.password_field :password, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :password_confirmation, "Confirm Password:", class: 'form-label' %>
+      <%= form.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+
+    <div class="text-center">
+      <%= submit_tag "Create User", class: 'btn btn' %>
+    </div>
+  <% end %>
 <% end %>
+
+<style>
+    .form-label {
+        font-weight: bold;
+    }
+    .form-control {
+        margin-bottom: 10px;
+    }
+    .text-center {
+        margin-top: 20px;
+    }
+</style>

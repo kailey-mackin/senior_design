@@ -3,7 +3,7 @@
 
 <%= form_for @quiz do |f| %>
   <div class="form-group">
-    <%= f.label :which_grbas_letter, 'Which GRBAS Letter?', class: 'form-label' %>
+    <%= f.label :which_grbas_letter, 'Which G (Grade), R (Roughness), B (Breathiness), A (Asthenia), S (Strain) Letter?', class: 'form-label' %>
     <%= f.select :which_grbas_letter, ['G', 'R', 'B', 'A', 'S'], {}, { class: 'form-control custom-input' } %>
     <% if @quiz.errors[:which_grbas_letter].any? %>
       <div class="error"><%= @quiz.errors[:which_grbas_letter].join(", ") %></div>
@@ -24,7 +24,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :num_questions, 'Number of Questions', class: 'form-label' %>
+    <%= f.label :num_questions, 'Number of Questions (Limit 20)', class: 'form-label' %>
     <%= f.number_field :num_questions, in: 1..20, class: 'form-control custom-input' %>
     <% if @quiz.errors[:num_questions].any? %>
       <div class="error"><%= @quiz.errors[:num_questions].join(", ") %></div>
@@ -69,8 +69,7 @@
         margin-right: 5px;
     }
     .difficulty-btn.active {
-        color: darkgray;
-        background-color: #007bff;
+        color: white;
     }
     .error {
         color: #dc3545; /* Bootstrap danger color */
