@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false}
   validates :password,
             presence: true,
-            format: {with: VALID_PASSWORD_REGEX, message: " must include a number (0-9), a lower and upper case letter, and a symbol"},
+            format: {with: VALID_PASSWORD_REGEX, message: " must include a number (0-9), a lowercase and uppercase letter, and a symbol"},
             length: {minimum: 8}
   validates :password_confirmation, presence: true
   validates :music_experience, presence: true
