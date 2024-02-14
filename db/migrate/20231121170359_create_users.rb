@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :clinical_experience
       t.string :general_education
       t.string :session_token
+      t.string :access_level
     end
   end
 end

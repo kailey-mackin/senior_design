@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20231127225729) do
     t.string "clinical_experience"
     t.string "general_education"
     t.string "session_token"
+    t.string "access_level"
   end
 
 end

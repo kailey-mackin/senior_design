@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   validates :music_experience, presence: true
   validates :clinical_experience, presence: true
   validates :general_education, presence: true
+  validates :access_level, presence: true
 
   has_and_belongs_to_many :quizzes
 
