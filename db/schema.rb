@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 20231127225729) do
     t.string "email"
     t.string "password_digest"
     t.string "name"
+    t.string "music_experience"
+    t.string "clinical_experience"
+    t.string "general_education"
     t.string "session_token"
   end
 

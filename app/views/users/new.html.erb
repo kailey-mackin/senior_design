@@ -22,6 +22,21 @@
       <%= form.password_field :password_confirmation, class: 'form-control' %>
     </div>
 
+    <div class="form-group">
+      <%= form.label :music_experience, "Years of Music Experience", class: 'form-label' %>
+      <%= form.select :music_experience, ['0','1-2','3-4', '5+'], {}, { class: 'form-control custom-input' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :clinical_experience, "Years of Clinical Experience", class: 'form-label' %>
+      <%= form.select :clinical_experience, ['0','1-2','3-4', '5+'], {}, { class: 'form-control custom-input' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :general_education, "Years of General Education (related to speech language pathology only)", class: 'form-label' %>
+      <%= form.select :general_education, ['0','1-2','3-4', '5+'], {}, { class: 'form-control custom-input' } %>
+    </div>
+
     <div class="text-center">
       <%= submit_tag "Create User", class: 'btn btn' %>
     </div>
