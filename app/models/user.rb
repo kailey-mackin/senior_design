@@ -5,10 +5,16 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+
+  # validates presence of a digit, lower case letter, upper case letter, and a symbol
+  VALID_PASSWORD_REGEX = /\A(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/x
   validates :email, presence: true,
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
-  validates :password, presence: true, length: {minimum:8}
+  validates :password,
+            presence: true,
+            format: {with: VALID_PASSWORD_REGEX, message: " must include a number (0-9), a lower and upper case letter, and a symbol"},
+            length: {minimum: 8}
   validates :password_confirmation, presence: true
 
   has_and_belongs_to_many :quizzes
