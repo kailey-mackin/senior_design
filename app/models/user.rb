@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
             format: {with: VALID_PASSWORD_REGEX, message: " must include a number (0-9), a lower and upper case letter, and a symbol"},
             length: {minimum: 8}
   validates :password_confirmation, presence: true
+  validates :music_experience, presence: true
+  validates :clinical_experience, presence: true
+  validates :general_education, presence: true
 
   has_and_belongs_to_many :quizzes
 
