@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'quiz_history'
+      get 'open_join_group'
+      post 'join_group'
     end
   end
   match '/login', to: 'sessions#new', via: :get, :as => 'login'

@@ -37,8 +37,7 @@
         <%= link_to 'Existing Groups', groups_path %>
         <% end %>
       <% if @current_user.access_level.eql?("Student") %>
-        <%#= link_to 'Existing Groups', add_group_path %>
-        <p>Join a Group</p>
+        <%= link_to 'Join A Group', open_join_group_user_path(@current_user.id) %>
   <% end %>
       <%= link_to 'Log Out', logout_path, method: :delete, class: 'mr-2' %>
     <% end %>

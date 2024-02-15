@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20240215173407) do
-
-  create_table "group_users", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-  end
+ActiveRecord::Schema.define(version: 20240215211302) do
 
   create_table "groups", force: :cascade do |t|
     t.string  "name"
@@ -25,13 +20,19 @@ ActiveRecord::Schema.define(version: 20240215173407) do
     t.integer "owner"
   end
 
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
+
   create_table "quiz_sounds", force: :cascade do |t|
     t.integer "quiz_id"
     t.integer "sound_id"
   end
 
   add_index "quiz_sounds", ["quiz_id", "sound_id"], name: "index_quiz_sounds_on_quiz_id_and_sound_id", unique: true
-  add_index "quiz_sounds", [nil, nil], name: "index_quiz_sounds_on_group_id_and_user_id", unique: true
 
   create_table "quizzes", force: :cascade do |t|
     t.datetime "created_at",         null: false

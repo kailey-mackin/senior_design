@@ -8,8 +8,8 @@ class GroupsController < ApplicationController
   def index
     if @current_user.access_level.eql?("Professor")
       @groups = Group.where(owner: @current_user.id)
-    elsif @current_user.access_level_eql?("Student")
-      @groups = Group.where(user_id: @current_user.id)
+    elsif @current_user.access_level.eql?("Student")
+      @groups = @current_user.groups
     end
   end
 
