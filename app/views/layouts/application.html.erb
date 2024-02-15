@@ -34,7 +34,7 @@
     <% unless @current_user.nil? %>
       <% if @current_user.access_level.eql?("Professor") %>
         <%= link_to 'Add A Group', new_group_path %>
-        <%#= link_to 'Existing Groups', groups_path %>
+        <%= link_to 'Existing Groups', groups_path %>
         <% end %>
       <% if @current_user.access_level.eql?("Student") %>
         <%#= link_to 'Existing Groups', add_group_path %>
