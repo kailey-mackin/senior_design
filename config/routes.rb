@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :responses
   resources :quizzes
   resources :sounds
+  resources :groups
   resources :users do
     member do
       get 'quiz_history'
