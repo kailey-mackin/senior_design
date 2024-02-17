@@ -51,12 +51,16 @@ class UsersController < ApplicationController
 
   def join_group
     join_token = user_params[:join_token]
-    if Group.find_group(join_token)
+    @group = Group.find_group(join_token).first
+    if !@current_user.groups.include?(@group) && !@group.nil?
       @group = Group.where(join_token: join_token).first
       @current_user.groups << @group
       redirect_to groups_path
-    else
+    elsif @group.eql?(nil)
       flash[:warning] = "Please try again, group code was either incorrect or group does not exist"
+      render open_join_group_user_path(@current_user.id)
+    else
+      flash[:message] = "You've already joined this group. Please check the existing groups tab."
       render open_join_group_user_path(@current_user.id)
     end
   end
