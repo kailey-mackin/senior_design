@@ -34,10 +34,11 @@
     <% unless @current_user.nil? %>
       <% if @current_user.access_level.eql?("Professor") %>
         <%= link_to 'Add A Group', new_group_path %>
-        <%= link_to 'Existing Groups', groups_path %>
+        <%= link_to 'Groups Owned', groups_path %>
         <% end %>
       <% if @current_user.access_level.eql?("Student") %>
         <%= link_to 'Join A Group', open_join_group_user_path(@current_user.id) %>
+        <%= link_to 'Joined Groups', groups_path %>
   <% end %>
       <%= link_to 'Log Out', logout_path, method: :delete, class: 'mr-2' %>
     <% end %>
