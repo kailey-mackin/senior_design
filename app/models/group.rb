@@ -18,6 +18,10 @@ class Group  < ActiveRecord::Base
   end
 
   def self.find_group(join_token)
-    Group.exists?(join_token: join_token)
+    if Group.exists?(join_token: join_token)
+      @group = Group.where(join_token: join_token).first
+    else
+      false
+    end
   end
 end
