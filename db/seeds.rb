@@ -55,10 +55,16 @@ wav_files.each do |wav_file|
   puts "Created sound #{filename}"
 end
 
-users = [{:email => "kaileymackin@gmail.com", :password => "password", :password_confirmation => "password", :name => "Kailey Mackin"},
-         {:email => "testuser@gmail.com", :password => "password", :password_confirmation => "password", :name => "Test User"},
-         {:email => "crazycats@catlady.com", :password => "password", :password_confirmation => "password", :name => "Crazy Cats"}]
+users = [{:email => "testuser@gmail.com", :password => "Password!1", :password_confirmation => "Password!1", :name => "Prof1", :music_experience => "3-4", :clinical_experience => "3-4", :general_education => "5+", :access_level => "Professor"},
+         {:email => "testuser1@gmail.com", :password => "Password!1", :password_confirmation => "Password!1", :name => "Student1",:music_experience => "0", :clinical_experience => "1-2", :general_education => "0", :access_level => "Student"},
+         {:email => "testuser2@gmail.com", :password => "Password!1", :password_confirmation => "Password!1", :name => "Student2", :music_experience => "0", :clinical_experience => "0", :general_education => "0", :access_level => "Student"}]
 
 users.each do |user|
   User.create!(user)
+end
+
+groups = [{:name => "Group 1", :description => "A demo group", :owner => 1}]
+
+groups.each do |group|
+  Group.create!(group)
 end
